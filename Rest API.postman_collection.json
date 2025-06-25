@@ -108,6 +108,50 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "gen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}user/gen/",
+							"host": [
+								"{{server}}user"
+							],
+							"path": [
+								"gen",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/v1/user/verify/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NWZjMTY1LTczODQtNDc4Ny04ODFiLTYzYWRiNGFhNDM3MiIsInNlY3JldCI6IjMyMXlUX29uTDdnSUVUY0pUNFQ5c3k2eXBWYnF4NG5RM1N1c0FOU3VmMVZyTW9uRXFsbFk5VkZhZjVFcUgzVk8ifQ.pac1mI6HIKPd4csgK7l_NfSKHiI6s1IlJgUiMvCGIvc",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"verify",
+								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4NWZjMTY1LTczODQtNDc4Ny04ODFiLTYzYWRiNGFhNDM3MiIsInNlY3JldCI6IjMyMXlUX29uTDdnSUVUY0pUNFQ5c3k2eXBWYnF4NG5RM1N1c0FOU3VmMVZyTW9uRXFsbFk5VkZhZjVFcUgzVk8ifQ.pac1mI6HIKPd4csgK7l_NfSKHiI6s1IlJgUiMvCGIvc"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
