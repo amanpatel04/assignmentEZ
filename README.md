@@ -38,7 +38,6 @@ A Django-based REST API application to securely manage file sharing between two 
 | **bcrypt**     | Secure password hashing     |
 | **PyJWT**      | Token-based authentication  |
 | **uuid**       | User and file identification|
-| **smtplib** / Django Email Backend | For email verification |
 
 ---
 
@@ -50,7 +49,7 @@ A Django-based REST API application to securely manage file sharing between two 
 | `/api/v1/user/verify/`     | GET    | Public           | Verifies the Client User via encrypted URL   |
 | `/api/v1/user/login/`      | POST   | Public           | Login for both Ops and Client Users          |
 | `/api/v1/file/upload/`     | POST   | Ops User only    | Upload `.pptx`, `.docx`, `.xlsx` files       |
-| `/api/v1/file/list/`       | GET    | Client User only | List all uploaded files                      |
+| `/api/v1/file/`       | GET    | Client User only | List all uploaded files                      |
 | `/api/v1/file/download/`   | GET    | Client User only | Generate secure encrypted download link      |
 
 ---
@@ -58,4 +57,15 @@ A Django-based REST API application to securely manage file sharing between two 
 ## 🛠️ Setup Instructions
 
 ### 1️⃣ Clone the Repository
+
+---
+```bash
+git clone https://github.com/amanpatel04/assignmentEZ.git
+cd assignmentEZ
+python -m venv env
+pip install -r requirements.txt
+cd fileshare
+python manage.py migate
+python manage.py runserver
+
 
