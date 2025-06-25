@@ -18,12 +18,12 @@ def upload_file(request):
   if (request.method == 'POST'):
     name = request.POST['name']
     file = request.FILES['file']
-    if (request.COOKIES.get('token') == None):
+    if request.COOKIES.get('token') == None:
       return JsonResponse(status=400, data={'success':False}, safe=False)
     extension = file.name.split('.')[-1]
     if extension == 'docx' or extension == 'pptx' or extension == 'xlsx':
       user = is_logged_in(request.COOKIES['token'])
-      if not user:
+      if not user or user.is_ops == False:
         return JsonResponse(status=400, data={'success':False}, safe=False)
       file = File.objects.create(name=name, file=file)
       File_User.objects.create(user=user, file=file)
@@ -32,11 +32,13 @@ def upload_file(request):
 
 
 def download_file(request):
-  if (request.COOKIES.get('token') == None):
+  if request.COOKIES.get('token') == None:
     return JsonResponse(status=400, data={'success':False}, safe=False)
+  user = is_logged_in(request.COOKIES['token'])
+  if not user or user.is_verified == False:
+    return JsonResponse(status=400, data={'message': 'User not verified'}, safe=False)
   qurey = request.GET.get('file_id')
   file = File.objects.filter(id=qurey).first()
-  user = is_logged_in(request.COOKIES['token'])
   payload = {
     'download_link' : file.file.url,
     'message': 'success'
@@ -47,8 +49,6 @@ def download_file(request):
 
 
 def secure_download(request):
-  # if (request.GET.get('token') == None):
-  #   return JsonResponse(status=400, data={'success':False}, safe=False)
   try:
     payload = jwt.decode(request.GET.get('token'), settings.SECRET_KEY, algorithms=['HS256'])
     file_path = os.path.join(settings.BASE_DIR, payload['download_link'][1:])
